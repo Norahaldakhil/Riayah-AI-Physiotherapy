@@ -1,5 +1,13 @@
 # Riayah | رعاية
 
+<p align="center">
+  <img src="assets/riayah-poster.jpg" width="750" alt="Riayah Project Poster">
+</p>
+
+<p align="center">
+  <b>AI-Powered Home Physiotherapy Support Platform</b>
+</p>
+
 Riayah is an AI-powered home physiotherapy support platform designed to help users perform rehabilitation exercises at home and receive clear feedback about their movement.
 
 ## Project Overview
@@ -10,89 +18,153 @@ Riayah is designed as a support tool and does not replace a qualified physiother
 
 ## MVP Preview
 
-![Riayah Home Page](assets/riayah-home.jpg)
+<p align="center">
+  <img src="assets/riayah-home.png" width="850" alt="Riayah Home Page">
+</p>
+
+The Riayah web platform provides an Arabic-first experience where users can upload an exercise video and receive AI-supported movement analysis and feedback.
 
 ## How Riayah Works
 
-### 1. Start
-The user starts the physiotherapy support journey through the Riayah platform.
+### 1. Upload Video
 
-![Riayah Start](assets/riayah-start.jpg)
-
-### 2. Upload Video
 The user uploads a short video of the physiotherapy exercise.
 
-![Upload Video](assets/riayah-upload.jpg)
+<p align="center">
+  <img src="assets/riayah-upload.jpg" width="500" alt="Riayah Upload Video">
+</p>
 
-### 3. AI Analysis
-Riayah uses YOLOv8-Pose to detect body keypoints, then uses machine learning and deep learning models to recognize the exercise and analyze movement quality.
+### 2. AI Analysis
 
-![AI Analysis](assets/riayah-analysis.jpg)
+Riayah samples frames from the uploaded video and uses YOLOv8-Pose to detect body keypoints.
 
-### 4. Results & Feedback
+The extracted movement information is then used by machine learning and deep learning models to recognize the exercise and estimate movement quality.
+
+<p align="center">
+  <img src="assets/riayah-analysis.jpg" width="500" alt="Riayah AI Analysis">
+</p>
+
+### 3. Results & Feedback
+
 The user receives the detected exercise, an AI-estimated movement-quality score, and clear supportive feedback in Arabic.
 
-![Results and Feedback](assets/riayah-results.jpg)
+<p align="center">
+  <img src="assets/riayah-results.jpg" width="500" alt="Riayah Results and Feedback">
+</p>
 
 ## AI Pipeline
 
-**Upload Video → Pose Detection → Exercise Recognition → Movement Quality Analysis → Arabic Feedback**
+**Upload Video → Sample 45 Frames → YOLOv8-Pose → Exercise Classification → Movement Quality Estimation → Arabic Feedback**
 
 ## Models
 
-- **YOLOv8-Pose** — Body keypoint detection
-- **Random Forest** — Exercise classification
-- **GRU** — Movement quality estimation
-- **LLM** — Generates clear Arabic feedback from validated analysis results
+* **YOLOv8-Pose** — Detects body keypoints from exercise videos.
+* **Random Forest** — Classifies the performed physiotherapy exercise.
+* **GRU** — Estimates movement quality from temporal movement features.
+* **LLM** — Converts validated AI results into clear Arabic feedback.
 
 ## Key Results
 
-- 9 physiotherapy exercises
-- **89.71%** exercise classification accuracy
-- **8.39 MAE** for movement quality estimation
+* **9 physiotherapy exercises**
+* **89.71% exercise classification accuracy**
+* **8.39 MAE for movement quality estimation**
+* **45 frames analyzed per video**
+* **17 body keypoints extracted per frame**
 
 ## Technologies
 
-- Python
-- YOLOv8-Pose
-- Scikit-learn
-- PyTorch
-- Random Forest
-- GRU
-- FastAPI
-- React
-- Tailwind CSS
-- OpenAI API
+**AI & Machine Learning**
+
+* YOLOv8-Pose
+* Random Forest
+* GRU
+* PyTorch
+* Scikit-learn
+
+**Backend**
+
+* Python
+* FastAPI
+* OpenCV
+* OpenAI API
+
+**Frontend**
+
+* React
+* Tailwind CSS
 
 ## Main Features
 
-- Exercise video upload
-- Body pose detection
-- Exercise recognition
-- Movement quality estimation
-- Arabic feedback
-- Simple interface designed for home use
+* Upload physiotherapy exercise videos
+* Detect body pose and movement
+* Recognize the performed exercise
+* Estimate movement quality
+* Generate Arabic feedback
+* Display results through a simple web interface
+* Delete temporary video files after analysis
 
-## Project Poster
+## System Flow
 
-![Riayah Project Poster](assets/riayah-poster.jpg)
+```text
+User Uploads Video
+        ↓
+Temporary Video Processing
+        ↓
+45 Frame Sampling
+        ↓
+YOLOv8-Pose
+        ↓
+Random Forest Classification
+        ↓
+GRU Quality Estimation
+        ↓
+Structured AI Result
+        ↓
+LLM Arabic Feedback
+        ↓
+Results Displayed to User
+```
+
+## Responsible AI
+
+Riayah was designed as a support tool rather than a medical diagnostic system.
+
+* The movement score is presented as an **AI-estimated score**.
+* The system does not diagnose injuries or medical conditions.
+* LLM feedback is generated only from validated model results.
+* A rule-based fallback is used if the LLM response is unavailable.
+* Uploaded videos are processed temporarily and deleted after the request.
+* Professional physiotherapy guidance remains essential.
 
 ## Repository Structure
 
 ```text
 Riayah-AI-Physiotherapy/
-├── backend/
-│   └── main.py
+│
+├── MobiPhysio-backend/
+│
+├── raya-frontend/
+│
+├── notebooks/
+│
 ├── assets/
-├── requirements.txt
-├── .gitignore
+│   ├── riayah-home.png
+│   ├── riayah-upload.jpg
+│   ├── riayah-analysis.jpg
+│   ├── riayah-results.jpg
+│   └── riayah-poster.jpg
+│
 └── README.md
 ```
 
-## Purpose
+## Project Purpose
 
-The goal of Riayah is to support home physiotherapy practice by using computer vision and AI to help users better understand their exercise performance and receive useful feedback.
+The goal of Riayah is to support home physiotherapy practice by combining computer vision, machine learning, deep learning, and AI-generated feedback in one practical web experience.
+
+The project focuses on helping users better understand their exercise performance while keeping professional physiotherapy guidance central.
 
 ## Disclaimer
 
-Riayah is designed to support home physiotherapy practice only. It does not provide medical diagnosis and does not replace a qualified physiotherapist.
+Riayah is designed to support home physiotherapy practice only.
+
+It does not provide medical diagnosis and does not replace guidance from a qualified physiotherapist.
